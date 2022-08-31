@@ -36,7 +36,7 @@ def uniform(low, up, size=None):####generate a matrix of the range of variables
 
 def findindex(org, x):
     result = []
-    for k,v in enumerate(org): #k和v分别表示org中的下标和该下标对应的元素
+    for k,v in enumerate(org): 
         if v == x:
             result.append(k)
     return result
@@ -304,12 +304,11 @@ def main(seed,x_train):
         # pop_new = produce_diverse_individuals(pop_new, pop_non)
         ##################################################
         pop_unique = delete_duplicate(offspring)
-        pop_new,pop_unique = produce_unique_individuals(pop_new,offspring,dis,pop_unique,nei)
+        if NDIM <= 500:
+           pop_new,pop_unique = produce_unique_individuals(pop_new,offspring,dis,pop_unique,nei)
         pop_surrogate.extend(pop_unique)
         pop_surrogate = delete_duplicate(pop_surrogate)
         unique_number.append(len(pop_surrogate))
-        #if len(pop_surrogate) > MU*20:
-            #pop_surrogate = pop_surrogate[len(pop_surrogate)-MU*20:]
         invalid_ind = [ind for ind in pop_new if not ind.fitness.valid]
         fitne = toolbox.map(toolbox.evaluate, invalid_ind)
         for ind, fit1 in zip(invalid_ind, fitne):
