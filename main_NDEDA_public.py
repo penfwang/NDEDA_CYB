@@ -1,5 +1,3 @@
-#This file is the single-objective LBPADE from the author
-#try to ensemble the solutions
 from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 simplefilter(action='ignore', category=UserWarning)
@@ -336,8 +334,6 @@ if __name__ == "__main__":
     dataset_name = str(sys.argv[1])
     seed = str(sys.argv[2])
     folder1 =  '/nfs/home/wangpe/split_73' + '/' + 'train' + str(dataset_name) + ".npy"
-    #folder2 = '/nfs/home/wangpe/split_73' + '/' + 'test' + str(dataset_name) + ".npy"
-    #x_test = np.load(folder2)
     x_train = np.load(folder1)
     start = time.time()
     pop,min_fitness,unique_number = main(seed,x_train)
